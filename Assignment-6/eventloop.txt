@@ -1,0 +1,74 @@
+2. Explain nodejs event loop.
+
+	The event loop is what allows Node.js to perform non-blocking I/O operations.
+
+	When Node.js starts, it initializes the event loop, processes the provided input script which may make async API calls, schedules timers, then begins processing the event loop.
+
+	When using Node.js, a special library module called libuv is used to perform async operations.
+
+	Phases of the Event loop:
+
+	1. Timer phase: This phase processes timers that have been set using setTimeout() and setInterval().
+
+	2. Pending Callbacks: This phase processes any callbacks that have been added to the message queue by asynchronous functions.
+
+	3. Idle/prepare:  It is Used internally only. The “idle” phase is a period of time during which the event loop has nothing to do and can be used to perform background tasks.
+
+	4. Poll: This phase is used to check for new I/O events and process any that have been detected.
+
+	5. Check: This phase processes any setImmediate() callbacks that have been added to the message queue.
+
+	6. Close Callbacks: This phase processes any callbacks that have been added to the message queue by the close event of a socket.
+
+	Each phase has a FIFO queue of callbacks to execute.
+
+	If any microtasks have been scheduled, then they are processed at the end of each phase.
+
+	process.nextTick() fires immediately on the same phase.
+
+	Example:
+
+		function first(){
+    			console.log('First');
+		}
+		function second(){
+    			setTimeout(()=> {
+        			console.log('Set Timeout');
+    			},1000);
+		}
+		function third(){
+    			Promise.resolve(1).then(()=> {
+        			console.log('promise.resolve');
+   			});
+		}
+		function fourth(){
+    			setImmediate(()=> {
+        			console.log('Immediate');
+    			});
+		}
+		function fifth(){
+   			process.nextTick(()=> {
+        			console.log('Process in next iteration');
+   			});
+		}
+		console.log('By Hoisting - Global Execution first');
+		function final(){
+    			console.log('Final');
+		}
+
+		first();
+		second();
+		third();
+		fourth();
+		fifth();
+		final();
+
+	Output:
+
+		By Hoisting - Global Execution first
+		First
+		Final
+		Process in next iteration
+		promise.resolve
+		Immediate
+		Set Timeout
