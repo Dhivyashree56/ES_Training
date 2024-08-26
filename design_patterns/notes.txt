@@ -1,0 +1,38 @@
+Design patterns:
+It is a blueprint or a template, which we can implement in our code based on our problem statement and different situations.
+
+Referece: https://www.freecodecamp.org/news/javascript-design-patterns-explained/#what-are-design-patterns
+
+Basic types:
+Creational => deals with creation of objects, to impreove flexible and reusable code
+Structural => how to assemble objects and classes into larger structures and add extra functionalities (by inheriting the objects property)
+Behavioral => control communication and the assignment of responsibilities between different objects
+
+Structural:
+Singleton pattern:
+Singleton pattern ensures that a class has only one immutable instance. object can't be copied or modified. It is useful in places where the application has 1 point as source of truth.
+
+Factory pattern:
+The Factory method pattern provides an interface for creating objects that can be modified after creation. Create centralized onject creation instance.
+
+Abstract Factory pattern:
+The Abstract Factory pattern allows us to produce families of related objects without specifying concrete classes. 
+It's useful in situations where we need to create objects that share only some properties and methods.
+
+Builder pattern:
+Builder pattern is used to create objects in "steps". Normally we will have functions or methods that add certain properties or methods to our object.
+
+Prototype Pattern:
+Prototype pattern allows to create an object using another object as a blueprint, inheriting its properties and methods.
+
+Structural Pattern:
+Proxy pattern:
+The Proxy pattern provides a substitute or placeholder for another object. 
+This pattern is used toperforming some kind of action before or after the request gets to the actual original object.
+
+Behavioral Pattern:
+Iterator pattern:
+The iterator is used to traverse elements of a collection
+
+Observer Pattern
+The observer pattern lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.
